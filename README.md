@@ -1,6 +1,6 @@
 # solar_system_generator
 
-This project was created for the Fall 2023 Truman State University ACM Hackathon that took place over a two-week span.
+This project was created for the Fall 2023 Truman State University ACM Hackathon.
 
 The end goal of the project was to create a solar system generator, which, as the name implies, is meant to generate a theoretically plausible solar system.
 
