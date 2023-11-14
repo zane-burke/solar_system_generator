@@ -53,6 +53,7 @@ module Utils
         return a_n
     end
     export agm
+
     """
     Returns the harmonic mean of 2 numbers x and y
     """
@@ -70,7 +71,7 @@ module Utils
         elements = length(numbers)
         return elements / inverses
     end
-    harmonicN
+    export harmonicN
 
     """
     Implements Ramanujan's 1914 approximation of the circumference of an ellipse.

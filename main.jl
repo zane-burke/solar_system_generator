@@ -16,12 +16,7 @@ using .Generators
     - Only works for Main-Sequence stars
     - Cannot do binary star systems
     - Does not support 3d space
-
-    - Planetary generation is very limited
-      - So-called hot Jupiters cannot exist, since the inner planets are always rocky planets
-=#
-
-#=
+    - The number of planets maxes out at 10, even though a star could theoretically have many more planets than that
 
 Steps:
 
@@ -42,12 +37,6 @@ Steps:
     ...
 
     Generate the last planet
-
-=#
-
-#=
-number_of_planets_weights = [0.0438, 0.1350, 0.3238, 0.6049, 0.8802, 0.9974, 0.8802, 0.6049, 0.3238, 0.1350, 0.438]
-number_of_planets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 =#
 
 function main()

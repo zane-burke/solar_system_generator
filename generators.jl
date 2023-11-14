@@ -414,7 +414,7 @@ module Generators
     end
 
     """
-    Generates a star and returns a Star
+    Generates a star and returns a Solar.Star struct
     """
     function generatestar()::Star
         main_class, subclass = _stellarclass()
@@ -432,16 +432,16 @@ module Generators
     end
     export generatestar
 
+    # Will eventually generate a gas giant
     function _gasgiant()
 
     end
 
+    # Will eventually generate a rocky planet
     function _rockyplanet()
     end
 
-    function generateplanet(M::BigFloat)
-        #=
-        Generate 
-        =#
+    # Will eventually generate a planet of any type
+    function generateplanet()
     end
 end

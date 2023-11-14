@@ -4,10 +4,9 @@ A number of physical and mathematical constants
 module Constants
     #=
     Physical constant values taken from NIST CODATA recommended values
-    Pi taken from https://oeis.org/A000796 (First 64 Digits)
     =#
-
-    # (π²/60)k⁴/ħ³c² 
+    # The names of constants are relatively self-explanatory
+    # Units are provided by the constant if needed
     const StefanBoltzmannConstant::BigFloat = BigFloat(5.670374419e-8) # W m⁻² K⁻⁴
     export StefanBoltzmannConstant
     const BoltzmannConstant::BigFloat = BigFloat(1.380649e-23) # J K⁻¹
@@ -16,7 +15,6 @@ module Constants
     export GravitationalConstant
     const PlanckConstant::BigFloat = BigFloat(6.62607015e-34) # J Hz⁻¹
     export PlanckConstant
-    # h/2π
     const ReducedPlanckConstant::BigFloat = BigFloat(1.054571817e-34) # J s
     export ReducedPlanckConstant
     const WienDisplacementConstant::BigFloat = BigFloat(2.897771955e-3) # m K

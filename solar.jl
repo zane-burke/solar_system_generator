@@ -192,8 +192,10 @@ module Solar
     struct PlanetaryMiscellaneous
 
     end
+    export PlanetaryMiscellaneous
 
     """
+    Stores the orbit of a Planet
     ...
     # Fields
     - `path`: The path of the object's orbit
@@ -207,6 +209,7 @@ module Solar
         angles::OrbitalAngles
     end
     export Orbit
+
     """
     Stores all non-orbital information about a planet
     ...
@@ -335,13 +338,13 @@ module Solar
 
     """
     Stores uncategorized information about the star
+
+    Currently does not store anything
     ...
     # Fields
-    - ``:
     ...
     """
     struct StellarMiscellaneous
-        
     end
 
     """
@@ -402,6 +405,7 @@ module Solar
         println("Rotation velocity: ", round(rotation.rotationVelocity, sigdigits = 5))
     end
     export printstar
+
     """
     Returns the semi-minor axis of an ellipse with semi-major axis a and eccentricity e
 
@@ -414,6 +418,7 @@ module Solar
     function semi_minor_axis(a::BigFloat, e::BigFloat)
         return a * sqrt(1 - e*e)
     end
+    export semi_minor_axis
 
     """
     Returns the semi-latus rectum of an ellipse with semi-major axis a and eccentricity e
@@ -427,6 +432,7 @@ module Solar
     function semi_latus_rectum(a::BigFloat, e::BigFloat)
         return a * (1 - e*e)
     end
+    export semi_latus_rectum
 
     """
     Returns the apoapsis of an ellipse
@@ -440,6 +446,7 @@ module Solar
     function apoapsis(a::BigFloat, e::BigFloat)
         return a * (1 + e)
     end
+    export apoapsis
 
     """
     Returns the periapsis of an ellipse
@@ -453,6 +460,7 @@ module Solar
     function periapsis(a::BigFloat, e::BigFloat)
         return a * (1 - e)
     end
+    export periapsis
 
     """
     Returns the orbital period of a body
@@ -466,6 +474,7 @@ module Solar
     function orbital_period(a::BigFloat, μ::BigFloat)
         return 2 * π * sqrt(/(a*a*a, μ))
     end
+    export orbital_period
 
     """
     Returns the mean orbital speed of an object orbiting a central body
@@ -489,6 +498,7 @@ module Solar
 
         return summation / N
     end
+    export mean_orbital_speed
 
     """
     Returns the instantaneous orbital speed of an object with semi major axis a, at a current distance of r from the central body
@@ -503,6 +513,7 @@ module Solar
     function instantaneous_orbital_speed(a::BigFloat, r::BigFloat, μ::BigFloat)
         return sqrt(μ * ((2 / r) - (1 / a)))
     end
+    export instantaneous_orbital_speed
 
     """
     Finds an approximation for the flattening of a body
@@ -517,6 +528,7 @@ module Solar
     function planetary_flattening(ω::BigFloat, a::BigFloat, m::BigFloat)
         return /(5 * ω*ω * a*a*a, 4 * GravitationalConstant * m)
     end
+    export planetary_flattening
 
     """
     Converts the flattening of an ellipse to the eccentricity
@@ -529,7 +541,8 @@ module Solar
     function flattening_to_eccentricity(f::BigFloat)
         return sqrt(2*f - f^2)
     end
-
+    export flattening_to_eccentricity
+    
     """
     Returns the mean radius of an ellipse
 
@@ -542,6 +555,7 @@ module Solar
     function mean_radius(a::BigFloat, b::BigFloat)
         return (a*b) / agm(a, b)
     end
+    export mean_radius
 
     """
     Returns the surface area of an oblate spheroid (e.g., a planet)
@@ -559,6 +573,7 @@ module Solar
         log_term = log(/(1 + e, 1 - e))
         return constant_term + log_factor * log_term
     end
+    export spheroid_surface_area
 
     """
     Returns the volume of a spheroid
@@ -572,6 +587,7 @@ module Solar
     function spheroid_volume(a::BigFloat, b::BigFloat)
         return (4 * π * a * a * b) / 3
     end
+    export spheroid_volume
 
     """
     Returns the surface area of a sphere
@@ -584,6 +600,7 @@ module Solar
     function sphere_surface_area(r::BigFloat)
         return 4 * π * r * r
     end
+    export sphere_surface_area
 
     """
     Returns the volume of a sphere
@@ -596,9 +613,10 @@ module Solar
     function sphere_volume(r::BigFloat)
         return /(4 * π * r * r * r, 3)
     end
+    export sphere_volume
 
     """
-    Returns the circumference of a sphere
+    Returns the circumference of a circle or sphere
 
     ...
     # Arguments
@@ -608,6 +626,7 @@ module Solar
     function circumference(r::BigFloat)
         return 2 * π * r
     end
+    export circumference
 
     """
     Returns the mean density of an object
@@ -621,6 +640,7 @@ module Solar
     function mean_density(m::BigFloat, V::BigFloat)
         return m / V
     end
+    export mean_density
 
     """
     Returns the surface gravity at distance r from the center of a planet
@@ -634,6 +654,7 @@ module Solar
     function surface_gravity(m::BigFloat, r::BigFloat)
         return /(GravitationalConstant * m, r*r)
     end
+    export surface_gravity
 
     """
     Returns the required escape velocity of an object from a central body with mass m at a distance r from the center of the body.
@@ -647,6 +668,7 @@ module Solar
     function escape_velocity(m::BigFloat, r::BigFloat)
         return sqrt(/(2*GravitationalConstant*m, r))
     end
+    export escape_velocity
 
     """
     Returns the sidereal rotation period of a body
@@ -660,6 +682,7 @@ module Solar
     function sidereal_rotation_period(C::BigFloat, v::BigFloat)
         return C / v
     end
+    export sidereal_rotation_period
 
     """
     Returns the irradiance/flux density of a star
@@ -673,6 +696,7 @@ module Solar
     function irradiance(L::BigFloat, A::BigFloat)
         return L / A
     end
+    export irradiance
 
     """
     Returns the radiance of a star
@@ -685,7 +709,8 @@ module Solar
     function radiance(T::BigFloat)
         return /(StefanBoltzmannConstant * T * T * T * T, π)
     end
-    
+    export radiance
+
     """
     Returns the luminosity of a star
 
@@ -698,7 +723,8 @@ module Solar
     function luminosity(A::BigFloat, T::BigFloat)
         return StefanBoltzmannConstant * A * T * T * T * T
     end
-    
+    export luminosity
+
     """
     Returns the specific relative angular momentum of an object
 
@@ -712,6 +738,8 @@ module Solar
     function specific_relative_angular_momentum(e::BigFloat, μ::BigFloat, a::BigFloat)
         return sqrt(μ*a * (1 - e)^2)
     end
+    export specific_relative_angular_momentum
+
     """
     Returns the specific kinetic energy of an object
 
@@ -723,7 +751,8 @@ module Solar
     function specific_kinetic_energy(v::BigFloat)
         return (v*v) / 2
     end
-    
+    export specific_kinetic_energy
+
     """
     Returns the specific potential energy of an object
 
@@ -736,7 +765,8 @@ module Solar
     function specific_potential_energy(μ::BigFloat, r::BigFloat)
         return -μ / r
     end
-    
+    export specific_kinetic_energy
+
     """
     Returns the specific orbital energy of an object
 
@@ -749,7 +779,8 @@ module Solar
     function specific_orbital_energy(μ::BigFloat, a::BigFloat)
         return -μ / (2 * a)
     end
-    
+    export specific_orbital_energy
+
     """
     Returns the mean motion of an object
 
@@ -761,6 +792,7 @@ module Solar
     function mean_motion()
         return /(2*π, T)
     end
+    export mean_motion
 
     """
     Returns the Roche limit of a body
@@ -775,6 +807,7 @@ module Solar
     function rochelimit(R::BigFloat, Ρ::BigFloat, ρ::BigFloat)
         return R * cbrt(2 * /(Ρ, ρ))
     end
+    export rochelimit
 
     """
     Returns the sphere of influence of a body
@@ -789,6 +822,7 @@ module Solar
     function sphereofinfluence(a::BigFloat, M::BigFloat, m::BigFloat)
         return a * (m / M)^(2/5)
     end
+    export sphereofinfluence
 
     """
     Returns the hill sphere of a body
@@ -804,6 +838,7 @@ module Solar
     function hillsphere(a::BigFloat, e::BigFloat, M::BigFloat, m::BigFloat)
         return periapsis(a, e) * cbrt(m / (3 * (M + m)))
     end
+    export hillsphere
 
     """
     Defines the path that an orbiting body takes around a central body in polar coordinates
@@ -820,6 +855,7 @@ module Solar
     function orbit(ℓ, m, μ, e, θ)
         return /(ℓ*ℓ, μ*m*m) * /(1, 1 + e*cos(θ))
     end
+    export orbit
 
     """
     Returns the coefficient of the inverse square law central force
@@ -833,4 +869,5 @@ module Solar
     function centralforcecoefficient(M::BigFloat, m::BigFloat)
         return m * GravitationalConstant * sqrt(M * (M + m))
     end
+    export centralforcecoefficient
 end # End Module
